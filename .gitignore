@@ -1,0 +1,26 @@
+# Local environments and generated files
+.venv/
+__pycache__/
+*.py[cod]
+.ruff_cache/
+.pytest_cache/
+logs/
+*.log
+.local-archive/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Private machine configuration and credentials
+.env
+.env.*
+!.env.example
+decider/config_override.json
+decider/config_override.yaml
+decider/config_override.yml
+*.pem
+*.key
+
+# Install the simulator separately
+simulation/

@@ -1,0 +1,19 @@
+name: Checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  decider:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r decider/requirements.txt ruff==0.17.5
+      - run: ruff check decider tests
+      - run: ruff format --check decider tests
+      - run: python -m compileall -q decider tests
+      - run: python -m unittest discover -s tests -v
+      - run: python decider/logic/policy_statemachines/test.py
+      - run: python decider/decider.py --help
